@@ -1,29 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div id="app" class="app">
+    <img alt="Valiu logo" src="./assets/valiu-logo.png" class="app__logo"/>
+    <Tags msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import Tags from "@/components/Tags/index.vue";
 
 @Component({
   components: {
-    HelloWorld
+    Tags
   }
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-#app {
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 15px;
+
+  &__logo {
+    width: 100px;
+    margin-bottom: 40px;
+  }
+}
+ul {
+  list-style: none;
+  padding-inline-start: 0;
 }
 </style>
