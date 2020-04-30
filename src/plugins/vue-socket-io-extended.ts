@@ -6,6 +6,6 @@ import { State } from "../store/index";
 
 export const connect = (store: Store<State>) => {
 
-    const socket = io(process.env.VUE_SOCKET_SERVER || 'http://localhost:3000');
+    const socket = io(process.env.VUE_APP_SOCKET_SERVER || 'http://localhost:3000');
     Vue.use(VueSocketIOExt, socket, { store });
 }
