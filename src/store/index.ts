@@ -50,7 +50,7 @@ export default new Vuex.Store({
   },
   actions: {
     async GET_TAGS({ commit }) {
-      const { data }: any = Api.getTags();
+      const { data }: any = await Api.getTags();
       commit("SET_TAGS", data.data);
     },
     async CREATE_TAG(context, data) {
