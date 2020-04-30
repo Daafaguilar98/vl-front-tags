@@ -5,6 +5,7 @@
                 class="create__input"
                 type="text"
                 :placeholder="placeholder"
+                v-on:keyup.enter="createTag"
                 v-model="title">
             <button class="create__action" @click="createTag">Guardar</button>
         </div>
