@@ -10,7 +10,10 @@
             />
         </template>
         <template v-if="mode === 'edit'">
-            <input type="text" v-model="newTitle">
+            <div class="item__edit--wrapper">
+                <input type="text" v-model="newTitle">
+                <span class="error_msg">{{ errors[0] }}</span>
+            </div>
             <Actions
                 :actions-labels="['Guardar', 'Cancelar']"
                 @on-first="updateTag"
@@ -43,6 +46,7 @@ export default class Item extends Vue {
 
     mode =  "show";
     title?: string;
+    errors: string[] = [];
 
     get newTitle(): string {
         return this.data.title;
@@ -63,12 +67,24 @@ export default class Item extends Vue {
         this.mode = newMode;
     }
 
+    public handleError(msg: string): void {
+        this.errors = [msg, ...this.errors];
+        setTimeout(() => {
+            this.errors.pop();
+        }, 3000)
+    }
+
     updateTag() {
-        this.actionUpdateTag({
-            id: this.data._id,
-            title: this.title
-        });
-        this.changeMode("show");
+        if (this.title) {
+            this.actionUpdateTag({
+                id: this.data._id,
+                title: this.title
+            });
+            this.changeMode("show");
+        } else {
+            this.title = this.data.title;
+            this.handleError("El campo no puede estar vacío");
+        }
     }
 
     deleteTag() {
@@ -92,16 +108,27 @@ export default class Item extends Vue {
             background-color: #EEE;
         }
 
-        input {
-            padding: 5px;
-            border-radius: 4px;
-            outline: none;
-            border: 1px solid #EEE;
-            font-size: 14px;
+        &__edit {
+            &--wrapper {
+                display: grid;
+                
+                input {
+                    padding: 5px;
+                    border-radius: 4px;
+                    outline: none;
+                    border: 1px solid #EEE;
+                    font-size: 14px;
+                }
+
+                &:hover {
+                    background-color: rgb(244, 247, 253);
+                }
+
+                .error_msg{
+                    margin-left: 0;
+                }
+            }
         }
 
-        &:hover {
-            background-color: rgb(244, 247, 253);
-        }
     }
 </style>

@@ -9,7 +9,7 @@
                 v-model="title">
             <button class="create__action" @click="createTag">Guardar</button>
         </div>
-        <span class="create__error">{{ errors[0] }}</span>
+        <span class="error_msg">{{ errors[0] }}</span>
     </div>
 </template>
 
@@ -102,13 +102,6 @@ export default class Create extends Vue {
         &__action:hover {
             opacity: 1;
             margin-top: 0px !important;
-        }
-
-        &__error {
-            margin-left: 15px;
-            color: rgb(194, 7, 7);
-            font-size: 14px;
-            font-weight: 600;
         }
     }
 </style>

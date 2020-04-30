@@ -39,4 +39,10 @@ ul {
   list-style: none;
   padding-inline-start: 0;
 }
+.error_msg{
+  margin-left: 15px;
+  color: rgb(194, 7, 7);
+  font-size: 14px;
+  font-weight: 600;
+}
 </style>
